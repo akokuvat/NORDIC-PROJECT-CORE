@@ -15,7 +15,9 @@ import {
   Shield,
   Network,
   Zap,
-  HardHat
+  HardHat,
+  Menu,
+  X
 } from "lucide-react";
 
 type Language = "SE" | "EN" | "FI";
@@ -387,13 +389,15 @@ const NordampBadge = () => (
 
 const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onShowContact, onShowNordamp }: { lang: Language; setLang: (l: Language) => void; onShowSolutions: () => void; onShowStory: () => void; onShowValues: () => void; onShowContact: () => void; onShowNordamp: () => void }) => {
   const t = translations[lang];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <nav className="flex justify-between items-center px-6 md:px-12 py-8 border-b border-border-subtle bg-bg-dark z-50 sticky top-0">
+    <nav className="flex justify-between items-center px-6 md:px-12 py-6 md:py-8 border-b border-border-subtle bg-bg-dark z-50 sticky top-0">
       <div className="flex items-center gap-6">
         <Logo />
       </div>
       
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-4 md:gap-8">
         <div className="hidden lg:flex gap-10 text-[11px] uppercase tracking-widest font-semibold text-white/50">
           {/* OUR IDENTITY DROPDOWN */}
           <div className="relative group flex items-center gap-1 cursor-pointer hover:text-white transition-colors uppercase">
@@ -445,15 +449,108 @@ const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onS
         
         <button 
           onClick={onShowContact}
-          className="bg-nordamp-blue hover:bg-nordamp-blue/80 text-white px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all rounded-sm flex items-center gap-2 group"
+          className="bg-nordamp-blue hover:bg-nordamp-blue/80 text-white px-4 md:px-6 py-2.5 md:py-3 text-[10px] font-black uppercase tracking-[0.2em] transition-all rounded-sm flex items-center gap-2 group"
         >
-          {t.contact}
+          <span className="hidden sm:inline">{t.contact}</span>
+          <span className="sm:hidden">CONTACT</span>
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </button>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="lg:hidden text-white/70 hover:text-white p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[100] bg-bg-dark lg:hidden flex flex-col pt-24 px-8 pb-12 overflow-y-auto"
+          >
+            <button 
+              className="absolute top-6 right-6 text-white/50 hover:text-white p-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <X size={32} />
+            </button>
+
+            <div className="flex flex-col gap-8">
+              <div className="space-y-4">
+                <div className="text-[10px] uppercase tracking-[0.3em] font-black text-nordamp-blue mb-6">Our Identity</div>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowStory(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-white/90"
+                >
+                  {t.storyLabel}
+                </button>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowValues(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-white/90"
+                >
+                  {t.valuesLabel}
+                </button>
+                <a 
+                  href="#edge" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-3xl font-black uppercase tracking-tighter text-white/90"
+                >
+                  {t.edge}
+                </a>
+              </div>
+
+              <div className="h-px w-full bg-white/5"></div>
+
+              <div className="space-y-4">
+                <div className="text-[10px] uppercase tracking-[0.3em] font-black text-accent-green mb-6">{t.whatWeDo}</div>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowSolutions(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-accent-green"
+                >
+                  {t.services}
+                </button>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowNordamp(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-nordamp-blue"
+                >
+                  {t.partners}
+                </button>
+              </div>
+
+              <div className="mt-auto space-y-8 pt-12">
+                <div className="flex items-center gap-4">
+                  {(["EN", "SE", "FI"] as Language[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`text-sm font-black tracking-widest ${lang === l ? "text-nordamp-blue" : "text-white/20 hover:text-white"}`}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowContact(); }}
+                  className="w-full py-5 bg-nordamp-blue text-white font-black uppercase tracking-[0.2em] text-center"
+                >
+                  {t.contact}
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
-}
+};
+
 
 const StoryOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
   const t = translations[lang];
@@ -671,18 +768,19 @@ const ContactOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void
 
   return (
     <motion.div 
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      className="fixed inset-0 bg-bg-dark/95 backdrop-blur-2xl z-[150] overflow-y-auto flex items-center justify-center p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-bg-dark/95 backdrop-blur-2xl z-[150] overflow-y-auto"
     >
-      <div className="max-w-4xl w-full bg-bg-alt border border-white/10 p-8 md:p-16 relative rounded-sm shadow-2xl">
-        <button 
-          onClick={onClose}
-          className="absolute top-8 right-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors group"
-        >
-          Close <ArrowRight size={14} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
-        </button>
+      <div className="min-h-full flex items-center justify-center p-4 md:p-8">
+        <div className="max-w-4xl w-full bg-bg-alt border border-white/10 p-8 md:p-16 relative rounded-sm shadow-2xl my-8">
+          <button 
+            onClick={onClose}
+            className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors group z-20"
+          >
+            Close <ArrowRight size={14} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
+          </button>
 
         <AnimatePresence mode="wait">
           {!submitted ? (
@@ -749,8 +847,9 @@ const ContactOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
-  )
+    </div>
+  </motion.div>
+)
 }
 
 const NordampOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
@@ -867,13 +966,25 @@ export default function App() {
       <main className="flex flex-col">
         
         {/* Hero Section */}
-        <section className="px-6 md:px-12 py-20 md:py-32 flex flex-col justify-center min-h-[70vh]">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+        <section className="px-6 md:px-12 py-20 md:py-32 flex flex-col justify-center min-h-[70vh] relative overflow-hidden">
+          {/* Industrial Nordic Background Image */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1581092334651-ddf26d9a1930?q=80&w=2070&auto=format&fit=crop" 
+              alt="Strategic Industrial Engineering" 
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-30"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-bg-dark via-bg-dark/80 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-bg-dark via-transparent to-bg-dark/40"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end relative z-10">
             <div className="md:col-span-8">
               <motion.h1 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-[60px] sm:text-[80px] md:text-[110px] leading-[0.85] font-black tracking-tighter uppercase text-balance"
+                className="text-5xl sm:text-7xl md:text-[110px] leading-[0.95] md:leading-[0.85] font-black tracking-tighter uppercase text-balance"
               >
                 {t.heroTitle} <br /> <span className="text-nordamp-blue">{t.heroHighlight}</span>
               </motion.h1>
@@ -989,8 +1100,8 @@ export default function App() {
                 </div>
               </div>
               
-              <div className="md:col-span-5 relative mt-12 md:mt-0">
-                <div className="aspect-square bg-bg-alt border border-white/10 rounded-sm p-12 flex flex-col justify-center gap-16 relative">
+              <div className="md:col-span-12 lg:col-span-5 relative mt-8 lg:mt-0">
+                <div className="aspect-[4/3] md:aspect-square bg-bg-alt border border-white/10 rounded-sm p-6 md:p-12 flex flex-col justify-center gap-8 md:gap-16 relative overflow-hidden">
                    {/* Technical corner accents */}
                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-nordamp-blue/40"></div>
                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-nordamp-blue/40"></div>

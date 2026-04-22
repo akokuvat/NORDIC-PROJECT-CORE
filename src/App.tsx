@@ -17,19 +17,25 @@ import {
   Zap,
   HardHat,
   Menu,
-  X
+  X,
+  Fingerprint,
+  ShieldAlert,
+  Radar,
+  Clock,
+  TrendingUp,
+  Box
 } from "lucide-react";
 
 type Language = "SE" | "EN" | "FI";
 
 const translations: Record<Language, any> = {
   EN: {
-    services: "Services",
+    services: "Project Services",
     partners: "Finnish Partners",
     edge: "The Edge",
-    heroTitle: "Securing Control for",
-    heroHighlight: "Complex Projects.",
-    heroSubtitle: "Nordic Project Core is the decisive strategic lead for Energy & Heavy Industry delivery. We neutralize field friction and resolve project bottlenecks, ensuring high-value industrial assets reach the grid on schedule and at margin.",
+    heroTitle: "Strategic Control for",
+    heroHighlight: "Project Delivery.",
+    heroSubtitle: "Bridging the critical gap between engineering design and operative reality. Nordic Project Core provides the decision intelligence and operational command required to secure high-stakes industrial assets.",
     swedishExecution: "Swedish Execution",
     suomeksi: "In Finnish",
     strategyLabel: "The NPC Strategy",
@@ -51,7 +57,7 @@ const translations: Record<Language, any> = {
     sol1Desc: "Acting as the decisive liaison for OEMs and EPCs. We ensure project delivery by taking total ownership of the interface between engineering design and Nordic site reality, protecting your margins through strict field governance.",
     sol2Title: "Risk Management",
     sol2Tag: "Compliance & Regulatory Edge",
-    sol2Desc: "Navigating the complexities of the Swedish energy market. We manage SSG standards, local labor agreements (MBL), and regulatory compliance to neutralize operational bottlenecks before they impact the schedule.",
+    sol2Desc: "Navigating the complexities of the Swedish energy market. We manage proprietary risk models, local operative protocols, and regulatory logic to neutralize operational bottlenecks before they impact the schedule.",
     sol3Title: "Technical Implementation",
     sol3Tag: "OEM Design to Field Asset",
     sol3Desc: "Bridging the gap between engineering packages and field-installed reality. We ensure 100% adherence to technical specifications during installation, protecting the integrity of high-value industrial assets.",
@@ -72,7 +78,7 @@ const translations: Record<Language, any> = {
     edgeTitle4: "POWERED BY",
     edgeTitle5: "KNOW-HOW.",
     edgeAdv1: "Industrial Technical Leadership",
-    edgeAdv1Desc: "Combining field journeyman skills with B.Sc. Electrical Engineering for heavy industry delivery.",
+    edgeAdv1Desc: "Combining collective field journeyman expertise with multi-tier Electrical Engineering proficiency for heavy industry delivery.",
     edgeAdv2: "Nordic & European Network",
     edgeAdv2Desc: "HQ in Åre, Sweden. Deep integration with local and European heavy industry contractors.",
     edgeAdv3: "Tech-Driven",
@@ -109,17 +115,17 @@ const translations: Record<Language, any> = {
     milestone3Year: "2024-Present",
     milestone3Title: "Strategic Nordic Lead",
     milestone3Desc: "Establishing the Nordic Project Core brand in Sweden to serve as the decisive E&I leadership anchor for global EPCs and OEMs.",
-    valuesLabel: "Core Values",
-    valuesTitle: "The Principles of",
-    valuesTitleHighlight: "Impact.",
-    val1Title: "Uncompromising Integrity",
-    val1Desc: "We do not hide behind complexity. We deliver the hard truth and the engineering evidence required to move projects forward.",
-    val2Title: "Decisive Leadership",
-    val2Desc: "NPC provides the operational structure where friction previously existed. We take ownership of the field and the result.",
-    val3Title: "Precision Execution",
-    val3Desc: "Field implementation must match engineering design 1:1. We bridge that gap with relentless attention to technical detail.",
-    val4Title: "Market Neutrality",
-    val4Desc: "We eliminate the cultural and informational debt of cross-border industrial operations through localized operational intelligence.",
+    valuesLabel: "Strategic Impact",
+    valuesTitle: "The Dimensions of",
+    valuesTitleHighlight: "Operational Effect.",
+    val1Title: "Technical Transparency",
+    val1Desc: "Eliminating informational debt through engineering-grade evidence. We provide the hard data required to maintain project momentum.",
+    val2Title: "Operational Command",
+    val2Desc: "Imposing structure on high-friction environments. We take absolute ownership of the field interface and the resulting delivery.",
+    val3Title: "Specification Fidelity",
+    val3Desc: "Ensuring 1:1 alignment between engineering design and field execution. We bridge the gap with relentless technical precision.",
+    val4Title: "Cross-Border Optimization",
+    val4Desc: "Neutralizing cultural and informational debt in Nordic operations through localized strategic intelligence.",
     inquiryTitle: "Strategic Project Inquiry",
     inquirySubtitle: "Submit your project parameters. Our strategic lead will contact you to discuss neutralizing operational bottlenecks.",
     fullName: "Full Name",
@@ -129,15 +135,21 @@ const translations: Record<Language, any> = {
     sendInquiry: "Submit Strategic Inquiry",
     inquirySuccess: "Inquiry Received. Our EIC lead will contact you within 24 hours.",
     inquiryCTA: "INITIATE TECHNICAL INQUIRY PHASE",
-    availability: "Available 7 days a week, 365 days in year."
+    bookMeeting: "Book a review meeting with us",
+    availability: "Available 7 days a week, 365 days a year.",
+    digitalAi: "Digitalisation & AI",
+    offer1: "Strategic Project Lead",
+    offer2: "Risk Containment",
+    offer3: "Strategic Recovery",
+    riskMgmt: "Operational Control"
   },
   SE: {
-    services: "Tjänster",
+    services: "Projekttjänster",
     partners: "Finska Partners",
     edge: "Vår Kant",
-    heroTitle: "Säkrad Kontroll över",
-    heroHighlight: "Komplexa Projekt.",
-    heroSubtitle: "Nordic Project Core är den avgörande strategiska ledaren för leveranser inom Energi & Tung Industri. Vi neutraliserar friktion i fält och löser flaskhalsar, vilket säkrar att industriella tillgångar når nätet i tid och med vinst.",
+    heroTitle: "Strategisk Kontroll för",
+    heroHighlight: "Projektleverans.",
+    heroSubtitle: "Vi överbryggar det kritiska gapet mellan ingenjörsdesign och operativ verklighet. Nordic Project Core tillhandahåller den beslutsinformella intelligens och det operativa kommando som krävs för att säkra storskaliga industritillgångar.",
     swedishExecution: "Svenskt Utförande",
     suomeksi: "På finska",
     strategyLabel: "NPC Strategi",
@@ -159,7 +171,7 @@ const translations: Record<Language, any> = {
     sol1Desc: "Fungerar som den avgörande länken för OEM-företag och EPC-kontraktörer. Vi säkerställer projektleverans genom att ta totalt ansvar för gränssnittet mellan ingenjörsdesign och nordisk verklighet på plats.",
     sol2Title: "Riskhantering",
     sol2Tag: "Efterlevnad & Regulatorisk Fördel",
-    sol2Desc: "Navigering i komplexiteten på den svenska energimarknaden. Vi hanterar SSG-standarder, lokala kollektivavtal (MBL) och regelefterlevnad för att neutralisera operativa flaskhalsar.",
+    sol2Desc: "Navigering i komplexiteten på den svenska energimarknaden. Vi hanterar omfattande riskmodeller, lokala operativa protokoll och regelefterlevnad för att neutralisera operativa flaskhalsar.",
     sol3Title: "Tekniskt Genomförande",
     sol3Tag: "Från OEM-design till Fälttillgång",
     sol3Desc: "Överbryggar gapet mellan ingenjörspaket och verklighet i fält. Vi säkerställer 100 % efterlevnad av tekniska specifikationer under installationen och skyddar dina industriella tillgångar.",
@@ -180,7 +192,7 @@ const translations: Record<Language, any> = {
     edgeTitle4: "DRIVEN AV",
     edgeTitle5: "KUNNANDE.",
     edgeAdv1: "Industriellt Tekniskt Ledarskap",
-    edgeAdv1Desc: "Kombinerar praktisk erfarenhet som montör med B.Sc. Elkraft för leveranser till tung industri.",
+    edgeAdv1Desc: "Kombinerar djupgående praktisk erfarenhet från fältet med teknisk expertis inom elkraft för leveranser till tung industri.",
     edgeAdv2: "Nordiskt & Europeiskt Nätverk",
     edgeAdv2Desc: "Huvudkontor i Åre. Djup integration med lokala och europeiska entreprenörer inom tung industri.",
     edgeAdv3: "Teknikdriven",
@@ -217,17 +229,17 @@ const translations: Record<Language, any> = {
     milestone3Year: "2024-Nu",
     milestone3Title: "Strategisk Nordisk Ledare",
     milestone3Desc: "Etablering av varumärket Nordic Project Core i Sverige som det avgörande E&I-ledarskapsankaret för globala EPC:er och OEM-företag.",
-    valuesLabel: "Kärnvärden",
-    valuesTitle: "Principer för",
-    valuesTitleHighlight: "Genomslag.",
-    val1Title: "Okompromissad Integritet",
-    val1Desc: "Vi gömmer oss inte bakom komplexitet. Vi levererar den hårda sanningen och de tekniska bevis som krävs för att föra projekt framåt.",
-    val2Title: "Beslutsamt Ledarskap",
-    val2Desc: "NPC tillhandahåller den operativa strukturen där friktion tidigare fanns. Vi tar ansvar för fältet och resultatet.",
-    val3Title: "Precision i Utförandet",
-    val3Desc: "Implementering i fält måste matcha ingenjörsdesignen 1:1. Vi överbryggar det gapet med obeveklig uppmärksamhet på tekniska detaljer.",
-    val4Title: "Marknadsneutralitet",
-    val4Desc: "Vi eliminerar den kulturella och informationsmässiga skulden i gränsöverskridande industriell verksamhet genom lokal operativ intelligens.",
+    valuesLabel: "Strategisk Effekt",
+    valuesTitle: "Dimensioner av",
+    valuesTitleHighlight: "Operativ Verkan.",
+    val1Title: "Teknisk Transparens",
+    val1Desc: "Eliminerar informationsskuld genom teknisk bevisföring. Vi tillhandahåller de data som krävs för att bibehålla projektets momentum.",
+    val2Title: "Operativt Kommando",
+    val2Desc: "Inför struktur i miljöer med hög friktion. Vi tar absolut ägarskap över fältgränssnittet och leveransresultatet.",
+    val3Title: "Specifikationstrohet",
+    val3Desc: "Säkerställer 1:1-överensstämmelse mellan design och utförande. Vi överbryggar gapet med obeveklig teknisk precision.",
+    val4Title: "Gränsöverskridande Optimering",
+    val4Desc: "Neutraliserar kulturell och informationsmässig skuld i nordisk verksamhet genom lokal strategisk intelligens.",
     inquiryTitle: "Strategisk Projektförfrågan",
     inquirySubtitle: "Skicka in dina projektparametrar. Vår strategiska ledare kontaktar dig för att diskutera hur vi neutraliserar operativa flaskhalsar.",
     fullName: "Fullständigt Namn",
@@ -237,15 +249,21 @@ const translations: Record<Language, any> = {
     sendInquiry: "Skicka Strategisk Förfrågan",
     inquirySuccess: "Förfrågan mottagen. Vår EIC-ledare kontaktar dig inom 24 timmar.",
     inquiryCTA: "INITIERA TEKNISK FÖRFRÅGNINGSFAS",
-    availability: "Tillgänglig 7 dagar i veckan, 365 dagar om året."
+    bookMeeting: "Boka ett granskningsmöte med oss",
+    availability: "Tillgänglig 7 dagar i veckan, 365 dagar om året.",
+    digitalAi: "Digitaliserings & AI",
+    offer1: "Strategisk Projektledning",
+    offer2: "Riskbegränsning",
+    offer3: "Strategisk Återhämtning",
+    riskMgmt: "Operativ Kontroll"
   },
   FI: {
-    services: "Palvelut",
+    services: "Projektipalvelut",
     partners: "Suomalaiset Kumppanit",
     edge: "Vauhtimme",
-    heroTitle: "Haltuunotto Komplekseissa",
-    heroHighlight: "Projekteissa.",
-    heroSubtitle: "Nordic Project Core on ratkaiseva strateginen johtaja energia- ja raskaan teollisuuden toimituksissa. Neutraloimme kentällä syntyvän kitkan ja ratkaisemme pullonkaulat, varmistaen teollisuusomaisuuden valmistumisen aikataulussa ja katteet turvaten.",
+    heroTitle: "Strateginen Hallinta",
+    heroHighlight: "Projektitoimituksiin.",
+    heroSubtitle: "Yhdistämme teknisen suunnittelun ja operatiivisen todellisuuden. Nordic Project Core tarjoaa strategisen analyysikyvyn ja johtajuuden, jota vaativien teollisuushankkeiden turvaaminen edellyttää.",
     swedishExecution: "Ruotsalainen Toteutus",
     suomeksi: "Suomeksi",
     strategyLabel: "NPC-strategia",
@@ -267,7 +285,7 @@ const translations: Record<Language, any> = {
     sol1Desc: "Toimii ratkaisevana linkkinä OEM-toimittajille ja EPC-urakoitsijoille. Varmistamme projektitoimituksen ottamalla kokonaisvastuun suunnittelun ja pohjoismaisen kenttätoteutuksen rajapinnasta.",
     sol2Title: "Riskienhallinta",
     sol2Tag: "Vaatimustenmukaisuus ja Sääntelyetu",
-    sol2Desc: "Ruotsin energiamarkkinoiden monimutkaisuuden hallinta. Hallitsemme SSG-standardit, paikalliset työehtosopimukset (MBL) ja viranomaisvaatimukset operatiivisten esteiden poistamiseksi.",
+    sol2Desc: "Ruotsin energiamarkkinoiden monimutkaisuuden hallinta. Hallitsemme operatiiviset protokollat, paikalliset vaatimukset ja viranomaislogiikan operatiivisten esteiden poistamiseksi.",
     sol3Title: "Tekninen toteutus",
     sol3Tag: "OEM-suunnittelusta Kenttäomaisuudeksi",
     sol3Desc: "Suunnittelupakettien ja asennetun todellisuuden välinen silta. Varmistamme 100-prosenttisen teknisten spesifikaatioiden noudattamisen asennuksen aikana, suojaten teollisuusomaisuuden eheyden.",
@@ -288,7 +306,7 @@ const translations: Record<Language, any> = {
     edgeTitle4: "PERUSTUU",
     edgeTitle5: "OSAAMISEEN.",
     edgeAdv1: "Teollisuustekninen Johtajuus",
-    edgeAdv1Desc: "Yhdistää kentän asentajakokemuksen ja sähkötekniikan INS-tutkinnon raskaaseen teollisuuteen ja energia-alalle.",
+    edgeAdv1Desc: "Yhdistää tiimin vankan kenttäkokemuksen ja sähköteknisen asiantuntijuuden raskaan teollisuuden toimituksiin.",
     edgeAdv2: "Pohjoismainen & Eurooppalainen Verkosto",
     edgeAdv2Desc: "Pääkonttori Åressa. Syvä integraatio paikallisten ja eurooppalaisten raskaan teollisuuden urakoitsijoiden kanssa.",
     edgeAdv3: "Teknologiavetoinen",
@@ -325,17 +343,17 @@ const translations: Record<Language, any> = {
     milestone3Year: "2024-Nykyhetki",
     milestone3Title: "Strateginen pohjoismainen johtaja",
     milestone3Desc: "Nordic Project Core -brändin vakiinnuttaminen Ruotsissa ratkaisevana E&I-johtajuuden ankkurina globaaleille EPC-urakoitsijoille ja OEM-valmistajille.",
-    valuesLabel: "Ydinarvot",
-    valuesTitle: "Vaikutuksen",
-    valuesTitleHighlight: "Periaatteet.",
-    val1Title: "Tinkimätön Rehellisyys",
-    val1Desc: "Emme piiloudu monimutkaisuuden taakse. Toimitamme kovan totuuden ja teknisen näytön, jota projektien edistäminen vaatii.",
-    val2Title: "Ratkaiseva Johtajuus",
-    val2Desc: "NPC luo operatiivisen rakenteen sinne, missä aiemmin oli kitkaa. Otamme vastuun kentästä ja lopputuloksesta.",
-    val3Title: "Toteutuksen Tarkkuus",
-    val3Desc: "Kenttätoteutuksen on vastattava suunnittelua 1:1. Ylitämme tuon kuilun hellittämättömällä huomiolla teknisiin yksityiskohtiin.",
-    val4Title: "Markkinaneutraliteetti",
-    val4Desc: "Eliminoimme rajat ylittävän teollisen toiminnan kulttuurisen ja tiedollisen velan paikallisen operatiivisen älykkyyden avulla.",
+    valuesLabel: "Strateginen Vaikutus",
+    valuesTitle: "Operatiivisen",
+    valuesTitleHighlight: "Vaikutuksen Ulottuvuudet.",
+    val1Title: "Tekninen Läpinäkyvyys",
+    val1Desc: "Tietovelan eliminointi insinööritason todisteilla. Tarjoamme kovan datan, jota projektin eteneminen edellyttää.",
+    val2Title: "Operatiivinen Johtajuus",
+    val2Desc: "Rakenteen luominen korkean kitkan ympäristöihin. Otamme täyden vastuun kenttärajapinnasta ja toimituksen lopputuloksesta.",
+    val3Title: "Spesifikaatio-uskollisuus",
+    val3Desc: "Varmistamme 1:1-vastaavuuden suunnittelun ja toteutuksen välillä. Ylitämme kuilun tinkimättömällä teknisellä tarkkuudella.",
+    val4Title: "Rajat ylittävä Optimointi",
+    val4Desc: "Kulttuurisen ja tiedollisen velan neutralointi pohjoismaisessa toiminnassa paikallisen strategisen älykkyyden avulla.",
     inquiryTitle: "Strateginen Projektikysely",
     inquirySubtitle: "Anna projektin perustiedot. Strateginen johtajamme ottaa yhteyttä keskustellakseen operatiivisten pullonkaulojen poistamisesta.",
     fullName: "Koko Nimi",
@@ -345,7 +363,13 @@ const translations: Record<Language, any> = {
     sendInquiry: "Lähetä Strateginen Kysely",
     inquirySuccess: "Kysely vastaanotettu. EIC-johtajamme ottaa yhteyttä 24 tunnin kuluessa.",
     inquiryCTA: "KÄYNNISTÄ TEKNINEN KYSELYVAIHE",
-    availability: "Tavoitettavissa 7 päivää viikossa, 365 päivää vuodessa."
+    bookMeeting: "Varaa arviointitapaaminen kanssamme",
+    availability: "Tavoitettavissa 7 päivää viikossa, 365 päivää vuodessa.",
+    digitalAi: "Digitalisaatio & AI",
+    offer1: "Strateginen Projektijohto",
+    offer2: "Riskien Hallinta",
+    offer3: "Strateginen Elvytys",
+    riskMgmt: "Operatiivinen Valvonta"
   }
 };
 
@@ -387,7 +411,7 @@ const NordampBadge = () => (
   </div>
 );
 
-const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onShowContact, onShowNordamp }: { lang: Language; setLang: (l: Language) => void; onShowSolutions: () => void; onShowStory: () => void; onShowValues: () => void; onShowContact: () => void; onShowNordamp: () => void }) => {
+const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onShowContact, onShowNordamp, onShowDigital, onShowRisk }: { lang: Language; setLang: (l: Language) => void; onShowSolutions: () => void; onShowStory: () => void; onShowValues: () => void; onShowContact: () => void; onShowNordamp: () => void; onShowDigital: () => void; onShowRisk: () => void }) => {
   const t = translations[lang];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -420,6 +444,12 @@ const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onS
                 <a href="#edge" className="block px-6 py-4 text-white/50 hover:text-white hover:bg-white/5 transition-colors border-l-2 border-transparent hover:border-nordamp-blue uppercase tracking-widest leading-none font-bold">
                   {t.edge}
                 </a>
+                <button 
+                  onClick={onShowNordamp}
+                  className="w-full text-left block px-6 py-4 text-white/50 hover:text-nordamp-blue hover:bg-nordamp-blue/5 transition-colors border-l-2 border-transparent hover:border-nordamp-blue uppercase tracking-widest leading-none font-bold"
+                >
+                  {t.partners}
+                </button>
               </div>
             </div>
           </div>
@@ -437,10 +467,16 @@ const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onS
                   {t.services}
                 </button>
                 <button 
-                  onClick={onShowNordamp}
-                  className="w-full text-left block px-6 py-4 text-white/50 hover:text-nordamp-blue hover:bg-nordamp-blue/5 transition-colors border-l-2 border-transparent hover:border-nordamp-blue uppercase tracking-widest leading-none font-bold"
+                  onClick={onShowDigital}
+                  className="w-full text-left block px-6 py-4 text-accent-green/60 hover:text-accent-green hover:bg-accent-green/5 transition-colors border-l-2 border-transparent hover:border-accent-green uppercase tracking-widest leading-none font-bold"
                 >
-                  {t.partners}
+                  {t.digitalAi}
+                </button>
+                <button 
+                  onClick={onShowRisk}
+                  className="w-full text-left block px-6 py-4 text-accent-green/40 hover:text-accent-green hover:bg-accent-green/5 transition-colors border-l-2 border-transparent hover:border-accent-green uppercase tracking-widest leading-none font-bold"
+                >
+                  {t.riskMgmt}
                 </button>
               </div>
             </div>
@@ -504,6 +540,12 @@ const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onS
                 >
                   {t.edge}
                 </a>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowNordamp(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-nordamp-blue"
+                >
+                  {t.partners}
+                </button>
               </div>
 
               <div className="h-px w-full bg-white/5"></div>
@@ -517,10 +559,16 @@ const Navbar = ({ lang, setLang, onShowSolutions, onShowStory, onShowValues, onS
                   {t.services}
                 </button>
                 <button 
-                  onClick={() => { setMobileMenuOpen(false); onShowNordamp(); }}
-                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-nordamp-blue"
+                  onClick={() => { setMobileMenuOpen(false); onShowDigital(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-accent-green"
                 >
-                  {t.partners}
+                  {t.digitalAi}
+                </button>
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); onShowRisk(); }}
+                  className="w-full text-left text-3xl font-black uppercase tracking-tighter text-accent-green"
+                >
+                  {t.riskMgmt}
                 </button>
               </div>
 
@@ -653,7 +701,7 @@ const SolutionsOverlay = ({ lang, onClose }: { lang: Language; onClose: () => vo
               title: t.sol2Title,
               tag: t.sol2Tag,
               desc: t.sol2Desc,
-              features: ["SSG Standards Compliance", "MBL / Labor Market Navigation", "Swedish Market Access Strategy"]
+              features: ["Proprietary Execution Modeling", "Strategic Labor Navigation", "Swedish Market Access Strategy"]
             },
             {
               title: t.sol3Title,
@@ -702,6 +750,102 @@ const SolutionsOverlay = ({ lang, onClose }: { lang: Language; onClose: () => vo
 
 const ValuesOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
   const t = translations[lang];
+  const [selectedDetail, setSelectedDetail] = useState<{ title: string; desc: string; icon: ReactNode; examples: string[]; longDesc: string } | null>(null);
+
+  const impactDetails = [
+    { 
+      title: t.val1Title, 
+      desc: t.val1Desc, 
+      icon: <Shield size={32} />,
+      longDesc: "Technical Transparency is the antidote to project blindness. In large-scale energy infrastructure, contractors often report progress based on estimates rather than evidence. NPC eliminates this 'Informational Debt' by implementing engineering-grade audits that provide a 1:1 reflection of field reality.",
+      examples: [
+        "Digital Progress Mapping: Verifying physical install percentage against contractor invoicing to ensure financial alignment.",
+        "Specification Auditing: Early detection of design deviations before they reach the critical path.",
+        "Live Operational Dashboards: Centralizing cross-tier contractor data for objective decision intelligence."
+      ]
+    },
+    { 
+      title: t.val2Title, 
+      desc: t.val2Desc, 
+      icon: <Network size={32} />,
+      longDesc: "Operational Command is about dominant leadership in high-friction environments. We don't just 'coordinate' meetings; we take total ownership of the field risk. This involves managing the often-complex interface between global OEMs and local execution workforces to ensure everyone moves in sync.",
+      examples: [
+        "Interface Risk Mitigation: Resolving technical conflicts between turbine suppliers and electrical EPCs in real-time.",
+        "Outage Orchestration: Directing multi-team operations during time-sensitive integration windows.",
+        "Contractor Synchronization: Aligning the priorities of tiered sub-contractors with the master project schedule."
+      ]
+    },
+    { 
+      title: t.val3Title, 
+      desc: t.val3Desc, 
+      icon: <Zap size={32} />,
+      longDesc: "Specification Fidelity ensures that the multi-million euro engineering design isn't compromised during the chaos of construction. We ensure that every P&ID, 3D model, and technical standard is adhered to with relentless precision, protecting the asset's long-term O&M profile.",
+      examples: [
+        "Engineering Drift Detection: Auditing field installations against 3D models to prevent downstream mounting conflicts.",
+        "Quality Baseline Enforcement: Applying NPC's high-precision E&I standards to local labor outputs.",
+        "Integrity Assurance: Verifying high-value asset integration points (e.g., boiler blocks, HV units) before handover."
+      ]
+    },
+    { 
+      title: t.val4Title, 
+      desc: t.val4Desc, 
+      icon: <Globe size={32} />,
+      longDesc: "Cross-Border Optimization neutralizes the cultural and logistical friction of Nordic energy operations. We bridge the gap for international EPCs entering the Swedish market, navigating local technical protocols, labor market nuances, and geological site realities.",
+      examples: [
+        "Nordic Compliance Navigation: Translating local operative protocols into actionable engineering tasks for international teams.",
+        "Localized Strategic Intelligence: Leveraging deep roots in the Swedish energy corridor to secure local permits and logistics.",
+        "Cultural Debt Neutralization: Resolving communication friction between Finnish engineering leads and Swedish-based site labor."
+      ]
+    }
+  ];
+
+  const effectDimensions = [
+    {
+      title: "Temporal Gain",
+      desc: "Accelerating the critical path by neutralizing information debt.",
+      icon: <Clock size={24} />,
+      longDesc: "Time is the most expensive variable in heavy industry. Temporal Gain is achieved by identifying schedule risks weeks before they manifest as delays, ensuring that the critical path remains fluid regardless of field friction.",
+      examples: [
+        "Pre-emptive Schedule Buffering: Identifying logistical bottlenecks at the border for oversized turbine components.",
+        "Idle-Time Elimination: Resolving wiring conflicts 48h before the specialty crew arrives on site.",
+        "Recovery Speed: Deploying the NPC 'Strategic Recovery' model to pull distressed projects back to baseline."
+      ]
+    },
+    {
+      title: "Financial Security",
+      desc: "Safeguarding project margins through strict field governance.",
+      icon: <TrendingUp size={24} />,
+      longDesc: "Project margins are eroded by 'Ghost Scope' and unverified progress claims. NPC provides the financial gatekeeper function, ensuring every euro spent reflects a tangible technical milestone achieved on the Swedish site.",
+      examples: [
+        "Scope Drift Prevention: Blocking unauthorized engineering changes that haven't passed through the strategic change board.",
+        "Invoice Verification: Auditing contractor progress claims against objective, NPC-verified field data.",
+        "Rework Avoidance: Reducing CAPEX wastage by ensuring 1:1 compliance during the first installation pass."
+      ]
+    },
+    {
+      title: "Asset Integrity",
+      desc: "Ensuring high-fidelity installation matching specifications.",
+      icon: <Box size={24} />,
+      longDesc: "The integrity of a power plant or refinery is decided during installation. By enforcing 100% specification fidelity, we reduce the total cost of ownership (TCO) and ensure the asset reaches its full operational life without premature mechanical failure.",
+      examples: [
+        "Commissioning Readiness: Reducing hand-over failures by 40% through continuous pre-commissioning field audits.",
+        "O&M Cost Reduction: Ensuring cable routing and piping maintain accessibility for future maintenance teams.",
+        "Technical Lifecycle Protection: Verifying that high-value OEM units are integrated according to strict proprietary guidelines."
+      ]
+    },
+    {
+      title: "Risk Neutralization",
+      desc: "Proactively mitigate threats before they manifest on site.",
+      icon: <ShieldAlert size={24} />,
+      longDesc: "Risk isn't just safety; it's the sum of all variables that can stop a project. Neutralization involves 'Dynamic Threat Analysis'—constantly scanning the project landscape for technical, logistical, and communicative failures before they can stall the grid connection.",
+      examples: [
+        "Operational Bottleneck Identification: Spotting early warning signs of contractor insolvency or resource scarcity.",
+        "Safety Culture Alignment: Enforcing high-stakes safety protocols in high-risk zones (e.g., ATEX, High Voltage).",
+        "Regulator Liaison: Managing the technical dialogue with local grid operators and safety authorities proactively."
+      ]
+    }
+  ];
+
   return (
     <motion.div 
       initial={{ opacity: 0, x: -100 }}
@@ -724,20 +868,46 @@ const ValuesOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void 
         </h2>
 
         <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/5">
-          {[
-            { title: t.val1Title, desc: t.val1Desc, icon: <Shield size={32} /> },
-            { title: t.val2Title, desc: t.val2Desc, icon: <Network size={32} /> },
-            { title: t.val3Title, desc: t.val3Desc, icon: <Zap size={32} /> },
-            { title: t.val4Title, desc: t.val4Desc, icon: <Globe size={32} /> }
-          ].map((val, idx) => (
-            <div key={idx} className="p-12 bg-bg-dark border border-white/5 hover:bg-bg-alt transition-all group">
-              <div className="text-accent-green mb-8 group-hover:scale-110 transition-transform duration-500 origin-left">
-                {val.icon}
+          {impactDetails.map((val, idx) => (
+            <div 
+              key={idx} 
+              onClick={() => setSelectedDetail(val)}
+              className="p-12 bg-bg-dark border border-white/5 hover:bg-bg-alt transition-all group cursor-pointer"
+            >
+              <div className="flex justify-between items-start mb-8">
+                <div className="text-accent-green group-hover:scale-110 transition-transform duration-500 origin-left">
+                  {val.icon}
+                </div>
+                <div className="text-[10px] font-black text-white/20 uppercase tracking-widest flex items-center gap-2 group-hover:text-accent-green transition-colors">
+                  Details <ArrowRight size={12} />
+                </div>
               </div>
               <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight leading-none group-hover:text-accent-green transition-colors">{val.title}</h3>
               <p className="text-text-dim text-lg leading-relaxed max-w-md">{val.desc}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-24 pt-24 border-t border-white/10">
+          <SectionLabel>Modes of Strategic Effect</SectionLabel>
+          <div className="grid md:grid-cols-4 gap-8">
+            {effectDimensions.map((effect, idx) => (
+              <div 
+                key={idx} 
+                onClick={() => setSelectedDetail({...effect, examples: effect.examples, longDesc: effect.longDesc})}
+                className="space-y-4 group cursor-pointer p-4 -m-4 hover:bg-white/5 rounded transition-colors"
+              >
+                <div className="flex items-center justify-between text-accent-green">
+                  <div className="flex items-center gap-3">
+                    {effect.icon}
+                    <span className="text-sm font-black uppercase tracking-widest">{effect.title}</span>
+                  </div>
+                  <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-text-dim text-sm leading-relaxed">{effect.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mt-24 flex justify-center">
@@ -749,9 +919,88 @@ const ValuesOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void 
           </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedDetail && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-12 pointer-events-none"
+          >
+            <div className="bg-bg-alt border border-white/10 w-full max-w-4xl max-h-[80vh] overflow-y-auto pointer-events-auto rounded shadow-2xl relative">
+              <button 
+                onClick={() => setSelectedDetail(null)}
+                className="absolute top-8 right-8 text-white/40 hover:text-white transition-colors p-2"
+              >
+                <X size={24} />
+              </button>
+              
+              <div className="p-8 md:p-16">
+                <div className="flex items-center gap-4 text-accent-green mb-8">
+                  <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+                    {selectedDetail.icon}
+                  </div>
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em]">Technical Deep Dive</h4>
+                </div>
+                
+                <h3 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter uppercase leading-none">
+                  {selectedDetail.title}
+                </h3>
+                
+                <div className="grid md:grid-cols-12 gap-12">
+                  <div className="md:col-span-7 space-y-8">
+                    <div>
+                      <SectionLabel className="mb-4">Operational Definition</SectionLabel>
+                      <p className="text-xl text-white/80 leading-relaxed font-medium italic">
+                        "{selectedDetail.desc}"
+                      </p>
+                    </div>
+                    <p className="text-text-dim text-lg leading-relaxed">
+                      {selectedDetail.longDesc}
+                    </p>
+                  </div>
+                  
+                  <div className="md:col-span-5">
+                    <div className="bg-bg-dark border border-white/5 p-8 rounded">
+                      <SectionLabel className="mb-6">Field Application Examples</SectionLabel>
+                      <ul className="space-y-6">
+                        {selectedDetail.examples.map((ex, exIdx) => (
+                          <li key={exIdx} className="flex gap-4 group/item">
+                            <div className="w-1 h-6 bg-nordamp-blue shrink-0 mt-1 group-hover/item:h-8 transition-all" />
+                            <p className="text-sm font-medium text-white/60 leading-relaxed group-hover/item:text-white transition-colors">
+                              {ex}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-16 pt-12 border-t border-white/10 flex justify-end">
+                  <button 
+                    onClick={() => setSelectedDetail(null)}
+                    className="px-8 py-3 border border-white/20 text-white/60 font-black uppercase text-[10px] tracking-widest hover:bg-white/5 hover:text-white transition-all flex items-center gap-2"
+                  >
+                    Close Analysis <ArrowRight size={14} className="rotate-180" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedDetail(null)}
+              className="absolute inset-0 bg-bg-dark/80 backdrop-blur-xl -z-10 pointer-events-auto"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
-}
+};
 
 const ContactOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
   const t = translations[lang];
@@ -852,6 +1101,150 @@ const ContactOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void
 )
 }
 
+const RiskOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
+  const t = translations[lang];
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-bg-dark z-[100] overflow-y-auto px-6 md:px-12 py-24"
+    >
+      <div className="max-w-7xl mx-auto relative">
+        <button 
+          onClick={onClose}
+          className="absolute -top-12 right-0 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors group"
+        >
+          Close <ArrowRight size={14} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
+        </button>
+
+        <SectionLabel className="text-accent-green">{t.riskMgmt}</SectionLabel>
+        <h2 className="text-5xl md:text-8xl font-black mb-16 tracking-tighter uppercase leading-[0.9]">
+          Neutralizing the <br />
+          <span className="text-accent-green">Unforeseen.</span>
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Vulnerability Forensics",
+              desc: "Deep-layer mapping of execution bottlenecks and hidden project liabilities before they compromise the critical path.",
+              icon: <Fingerprint size={32} />
+            },
+            {
+              title: "Asset Protection Logic",
+              desc: "Identifying and neutralizing technical threats to industrial infrastructure and digital network integrity during installation.",
+              icon: <ShieldAlert size={32} />
+            },
+            {
+              title: "Dynamic Threat Analysis",
+              desc: "Real-time assessment of operational deviations, contractor friction, and atmospheric project risks in the Nordic corridor.",
+              icon: <Radar size={32} />
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="p-10 bg-bg-alt border border-white/5 hover:border-accent-green/30 transition-all group">
+              <div className="text-accent-green mb-8 group-hover:scale-110 transition-transform origin-left">
+                {item.icon}
+              </div>
+              <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">{item.title}</h3>
+              <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20 p-12 bg-accent-green/5 border border-accent-green/20 rounded-sm">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-grow">
+              <h4 className="text-3xl font-black uppercase mb-4 tracking-tighter">Eliminate operational friction.</h4>
+              <p className="text-white/60 max-w-2xl leading-relaxed">
+                Nordic Project Core specializes in identifying and neutralizing risk before it hits the critical path. Our engineering-grade risk models protect your margins and safeguard project integrity.
+              </p>
+            </div>
+            <button 
+              onClick={onClose}
+              className="px-10 py-5 bg-accent-green text-bg-dark font-black uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+            >
+              Contact Specialist
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+const DigitalOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
+  const t = translations[lang];
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-bg-dark z-[100] overflow-y-auto px-6 md:px-12 py-24"
+    >
+      <div className="max-w-7xl mx-auto relative">
+        <button 
+          onClick={onClose}
+          className="absolute -top-12 right-0 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors group"
+        >
+          Close <ArrowRight size={14} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
+        </button>
+
+        <SectionLabel className="text-accent-green">{t.digitalAi}</SectionLabel>
+        <h2 className="text-5xl md:text-8xl font-black mb-16 tracking-tighter uppercase leading-[0.9]">
+          The Intelligence <br />
+          <span className="text-accent-green">of Frictionless Assets.</span>
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Digital Twin Integration",
+              desc: "Building the high-fidelity informational bridge between OEM design sets and field operational reality.",
+              icon: <Cpu size={32} />
+            },
+            {
+              title: "AI Risk Modeling",
+              desc: "Leveraging proprietary datasets to predict schedule drifts and compliance bottlenecks in Nordic energy corridors.",
+              icon: <Network size={32} />
+            },
+            {
+              title: "Adaptive Project Protocol",
+              desc: "Ensuring 100% adherence to project objectives and operational constraints through technical automation.",
+              icon: <FileCheck size={32} />
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="p-10 bg-bg-alt border border-white/5 hover:border-accent-green/30 transition-all group">
+              <div className="text-accent-green mb-8 group-hover:scale-110 transition-transform origin-left">
+                {item.icon}
+              </div>
+              <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">{item.title}</h3>
+              <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20 p-12 bg-accent-green/5 border border-accent-green/20 rounded-sm">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-grow">
+              <h4 className="text-3xl font-black uppercase mb-4 tracking-tighter">Accelerate your project intelligence.</h4>
+              <p className="text-white/60 max-w-2xl leading-relaxed">
+                Nordic Project Core leverages advanced computational analysis to modernize heavy industrial execution. We don't just manage projects; we optimize the data-streams that drive them.
+              </p>
+            </div>
+            <button 
+              onClick={onClose}
+              className="px-10 py-5 bg-accent-green text-bg-dark font-black uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+            >
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 const NordampOverlay = ({ lang, onClose }: { lang: Language; onClose: () => void }) => {
   const t = translations[lang];
   return (
@@ -940,10 +1333,12 @@ export default function App() {
   const [showValues, setShowValues] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [showNordamp, setShowNordamp] = useState(false);
+  const [showDigital, setShowDigital] = useState(false);
+  const [showRisk, setShowRisk] = useState(false);
   const t = translations[lang];
 
   return (
-    <div className={`min-h-screen bg-bg-dark text-text-main selection:bg-nordamp-blue selection:text-white scroll-smooth ${showSolutions || showStory || showValues || showContact || showNordamp ? "overflow-hidden" : ""}`}>
+    <div className={`min-h-screen bg-bg-dark text-text-main selection:bg-nordamp-blue selection:text-white scroll-smooth ${showSolutions || showStory || showValues || showContact || showNordamp || showDigital || showRisk ? "overflow-hidden" : ""}`}>
       <Navbar 
         lang={lang} 
         setLang={setLang} 
@@ -952,6 +1347,8 @@ export default function App() {
         onShowValues={() => setShowValues(true)}
         onShowContact={() => setShowContact(true)}
         onShowNordamp={() => setShowNordamp(true)}
+        onShowDigital={() => setShowDigital(true)}
+        onShowRisk={() => setShowRisk(true)}
       />
 
       <AnimatePresence>
@@ -960,6 +1357,8 @@ export default function App() {
         {showValues && <ValuesOverlay lang={lang} onClose={() => setShowValues(false)} />}
         {showContact && <ContactOverlay lang={lang} onClose={() => setShowContact(false)} />}
         {showNordamp && <NordampOverlay lang={lang} onClose={() => setShowNordamp(false)} />}
+        {showDigital && <DigitalOverlay lang={lang} onClose={() => setShowDigital(false)} />}
+        {showRisk && <RiskOverlay lang={lang} onClose={() => setShowRisk(false)} />}
       </AnimatePresence>
 
       {/* Main Content Area */}
@@ -1001,19 +1400,33 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
+                className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/10 pt-12"
+              >
+                {[
+                  { text: t.offer1, icon: <Shield size={16} /> },
+                  { text: t.offer2, icon: <FileCheck size={16} /> },
+                  { text: t.offer3, icon: <Zap size={16} /> }
+                ].map((offer, i) => (
+                  <div key={i} className="flex items-center gap-3 text-white/50 group hover:text-accent-green transition-colors cursor-default">
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent-green/10 transition-colors">
+                      {offer.icon}
+                    </div>
+                    <span className="text-xs font-black uppercase tracking-widest">{offer.text}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
                 className="mt-12 flex flex-wrap gap-4"
               >
                 <button 
                   onClick={() => setShowContact(true)}
                   className="px-8 py-4 bg-nordamp-blue text-white font-black uppercase text-sm tracking-widest hover:scale-105 transition-transform flex items-center gap-2 group"
                 >
-                  {t.contact} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button 
-                  onClick={() => setShowSolutions(true)}
-                  className="px-8 py-4 border border-nordamp-blue/30 text-nordamp-blue hover:bg-nordamp-blue/10 font-black uppercase text-sm tracking-widest transition-all"
-                >
-                  {t.swedishExecution}
+                  {t.bookMeeting} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
             </div>
@@ -1312,7 +1725,7 @@ export default function App() {
               <SectionLabel className="text-nordamp-blue border-nordamp-blue/30">{t.contact}</SectionLabel>
               <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-8">
                 {lang === "EN" ? (
-                  <>Available <span className="text-nordamp-blue">7 days a week</span>, 365 days in year.</>
+                  <>Available <span className="text-nordamp-blue">7 days a week</span>, 365 days a year.</>
                 ) : t.availability}
               </h2>
               <p className="text-text-dim text-xl max-w-xl leading-relaxed">
